@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:legacy
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: ${PGHOST}
+      DB_DATABASE: ${PGDATABASE}
+      DB_USER: ${PGUSER}
+      DB_SCHEMA: public
+      DB_PASSWORD: ${PGDATABASE}
+      KEYCLOAK_USER: ${KC_USER}
+      KEYCLOAK_PASSWORD: ${KC_PASS}
+    ports:
+      - 80:80
+    depends_on:
+      - postgres
